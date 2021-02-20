@@ -1,0 +1,73 @@
+/* concept of partials */
+/* by using partials we can separate major components, suits well in big projects, thus breaking components  
+work gets efficient */
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* concepts of variables in SCSS*/
+/* Variable declaration and concept */
+/* Understanding the workflow of functions */
+/* Discussing mixin help to maintain the clean code and avoid repeating things */
+/* we can also pass parameters using mixin */
+/* mixin and functions are very similar but just remember that functions should be use to compute values and return 
+ values --- mixin should define styles. */
+/* Maps in general and using variables */
+body {
+  background-color: #3a3337;
+  color: #fff;
+}
+
+/* Discussing the concept of nesting and interpolation*/
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 40%;
+  margin: 0 auto;
+  /* Discussing and implementing the concept of extend now */
+  /* Here we have extended all the properties of the __paragraph1 */
+  /* mixin concept*/
+}
+
+.main .main__paragraph1, .main .main__paragraph2 {
+  font-weight: 700;
+  /* function is used here */
+}
+
+.main .main__paragraph1:hover, .main .main__paragraph2:hover {
+  color: pink;
+}
+
+.main .main__paragraph2:hover {
+  color: red;
+}
+
+@media (max-width: 800px) {
+  .main {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+/* mixin theme example */
+.light {
+  background: white;
+  color: black;
+}
+/*# sourceMappingURL=main.css.map */

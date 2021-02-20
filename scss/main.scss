@@ -1,0 +1,87 @@
+/* concept of partials */
+/* by using partials we can separate major components, suits well in big projects, thus breaking components  
+work gets efficient */
+@import './resets';
+@import './variables';
+
+
+/* Understanding the workflow of functions */
+@function weight($weight-name) {
+    @return map-get($font-weights, $weight-name);
+}
+
+
+/* Discussing mixin help to maintain the clean code and avoid repeating things */
+/* we can also pass parameters using mixin */
+/* mixin and functions are very similar but just remember that functions should be use to compute values and return 
+ values --- mixin should define styles. */
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+@mixin theme($light-theme : true) 
+{
+    @if $light-theme {
+        background: lighten($primary-color, 100%);
+        color: darken($text-color, 100%);
+    }
+}
+
+
+@mixin mobile 
+{
+    @media (max-width: $mobile){
+        @content;
+    }
+}
+
+/* Maps in general and using variables */    
+body
+{
+    background-color: $primary-color;
+    color: $text-color;
+}
+
+/* Discussing the concept of nesting and interpolation*/
+.main 
+{
+    @include flexCenter(row);
+    width: 80% - 40%; // demostrating the concept operations // with sass we cant mix the types, meaning if the they are percentages, then use it that way.
+    margin: 0 auto;
+
+    #{&}__paragraph1 {
+        font-weight: weight(bold); /* function is used here */
+
+        &:hover
+        {
+            color: pink;
+        }
+    }
+
+    /* Discussing and implementing the concept of extend now */
+    /* Here we have extended all the properties of the __paragraph1 */
+    #{&}__paragraph2 {
+        @extend .main__paragraph1;
+
+        &:hover {
+          color: $accent-color;  
+        }
+    }
+
+    /* mixin concept*/
+    @include mobile
+    {
+        flex-direction: column;
+    }
+}
+
+
+/* mixin theme example */
+
+.light 
+{
+    @include theme($light-theme: true);
+}
